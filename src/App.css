@@ -1,38 +1,203 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Raleway:wght@100;300;400;500;600;700&display=swap');
+
+:root {
+  --bg:#161D31;
+  --primary: #283046;
+  --border:#4e5669;
+  
+  --text-light: #C9CBD0;
+  --text-deep: #3E4557;
+  --text-blue:#46468B;
+
+  --ff-montserrat: 'Montserrat';
+  --ff-opensans: 'Open Sans';
+  --ff-raleway: 'Raleway';
+}
+
+
+
+.container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:var(--bg);
+  height:100vh;
+  font-family: var(--ff-opensans);
+  color: var(--text-light)
+}
+
+.app{
+  display:flex;
+  background-color:var(--primary);
+  height:90vh;
+  width:960px;
+  border-radius:5px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.sidebar{
+  width:365px;
+  height:100%;
+  background-color: var(--primary);
+  border-right:1px solid var(--border);
+}
+.content{
+  width:calc(100% - 300px);
+  background-color:var(--text-blue);
+  height:100%;
+}
+
+.sidebar-nav{
+  display: flex;
+  height: 65px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom:1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+.avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border: 2px solid var(--border);
+  overflow:hidden;
+}
+.avatar img{
+  width:100%;
+  height:100%;
+}
+
+.search{
+  width:calc(100% - 54px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.input-group {
+  margin: 0 5px;
+  width: calc(100% - 10px);
+}
+
+.icon {
+  position: absolute;
+  padding: 10px 0;
+  color: green;
+  min-width: 50px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input-field {
+  box-shadow: none;
+  width: calc(100% - 50px);
+  padding: 10px;
+  padding-left: 40px;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid var(--border);
+  background-color: var(--primary);
+  color: #00b3bd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/* sidebar-content */
+.sidebar-content{
+  margin: 0;
+  padding: 0;
+  height: calc(100% - 65px);
+  overflow-y: hidden;
+  transition: all 0.5s ease
+}
+.sidebar-title{
+  margin: 10px;
+  color: var(--text-blue)
+}
+.chat-single{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.chat-info{
+  width:calc(100% - 55px);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  color: #ddd;
+}
+
+.chat-info h3{
+  font-family: var(--ff-montserrat);
+  font-weight: 400;
+  margin: 0;
+  font-size:16px;
+}
+
+.chat-info p{
+  margin: 0;
+  font-size:16px;
+  color: rgb(124, 116, 165);
+}
+
+.chat-single:hover{
+  background-color:rgb(40, 31, 78);
+}
+
+
+/* scrollbar design */
+.sidebar-content::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: var(--primary)
+}
+
+.sidebar-content::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: var(--primary)
+}
+
+.sidebar-content::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #17183b;
+  
+}
+
+.sidebar-content:hover{
+  overflow-y: scroll;
+}
+
+
+/* chat content */
+.chat-start{
+  height:100%;
+  width:100%;
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.658)), url('./assets/images/chat-bg.svg');
+  background-size:200px;
+  display:flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.chat-icon{
+  background-color: var(--primary);
+  width:70px;
+  height:70px;
+  border-radius: 50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-size:25px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-start p{
+  background-color: var(--primary);
+  padding: 3px 15px;
+  border-radius: 20px;
 }
