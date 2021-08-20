@@ -383,3 +383,64 @@
 .preloader i{
   color: #ecfd00;
 }
+
+
+
+/* profile */
+
+.close-button{
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.profile-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 56px);
+}
+
+.profile-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-details .avatar{
+  width:100px;
+  height:100px;
+}
+
+.profile-name{
+  font-size: 25px;
+  margin: 0;
+  margin-top: 30px;
+}
+
+.profile-mail{
+  margin: 0;
+  margin-top: 7px;
+  color: #7175a9;
+}
+
+.profile-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100px;
+}
+
+.btn-signout{
+  background-color: #161D31;
+  color: #fff;
+  padding:10px 30px;
+  border: 1px solid var(--border);
+  transition: all .3s linear;
+  border-radius: 5px;
+}
+.btn-signout:hover{
+  background-color: #fd0303;
+  color: #fff;
+}

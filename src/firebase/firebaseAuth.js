@@ -40,17 +40,11 @@ export const signInWithGoogle = () => {
     });
 };
 
-export const checkLogin = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      const formattedUser = formatUser(user);
-      return formattedUser;
-    } else {
-      return {
-        loggedIn: false,
-      };
-    }
-  });
+export const signOut = () => {
+  return firebase
+    .auth()
+    .signOut()
+    .then(() => console.log("Log out"));
 };
 
 export const CheckLogin = ({ children }) => {

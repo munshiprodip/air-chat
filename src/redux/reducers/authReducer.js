@@ -2,6 +2,7 @@ const initialState = {
   pageLoading: true,
   isLoggedIn: false,
   loggedInUser: {},
+  showProfile: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -29,6 +30,15 @@ const authReducer = (state = initialState, action) => {
       };
       return newState;
     }
+
+    case "SHOW_PROFILE": {
+      const newState = {
+        ...state,
+        showProfile: !state.showProfile,
+      };
+      return newState;
+    }
+
     default: {
       return state;
     }

@@ -18,3 +18,10 @@ export const setLoading = (payload) => {
     payload,
   };
 };
+
+export const showProfile = (payload) => {
+  return {
+    type: "SHOW_PROFILE",
+    payload,
+  };
+};

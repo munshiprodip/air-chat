@@ -1,10 +1,14 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { showProfile } from "../../../redux/actions/authAction";
 
 const SideTopNav = () => {
+  const dispatch = useDispatch();
+  const authUser = useSelector((state) => state.auth.loggedInUser);
   return (
     <div className="sidebar-nav">
-      <div className="avatar">
-        <img src="./images/user1.png" alt="user" />
+      <div className="avatar online" onClick={() => dispatch(showProfile())}>
+        <img src={authUser.photoUrl} alt="user" />
       </div>
       <div className="search">
         <div className="input-group">
