@@ -1,17 +1,32 @@
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import AppWrapper from "./components/AppWrapper/AppWrapper";
-import ChatContent from "./components/ChatContent/ChatContent";
 import Container from "./components/Container/Container";
-import SideBar from "./components/SideBar/SideBar";
+import { CheckLogin, PrivateRoute } from "./firebase/firebaseAuth";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 
 function App() {
+  const dispatch = useDispatch();
+
   return (
-    <Container>
-      <AppWrapper>
-        <SideBar></SideBar>
-        <ChatContent></ChatContent>
-      </AppWrapper>
-    </Container>
+    <Router>
+      <Container>
+        <AppWrapper>
+          <CheckLogin>
+            <Switch>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <PrivateRoute path="/">
+                <Home />
+              </PrivateRoute>
+            </Switch>
+          </CheckLogin>
+        </AppWrapper>
+      </Container>
+    </Router>
   );
 }
 

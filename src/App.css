@@ -55,7 +55,6 @@
   justify-content: space-between;
   padding: 0 20px;
   border-bottom:1px solid var(--border);
-  padding-bottom: 5px;
 }
 
 .avatar{
@@ -226,7 +225,6 @@
   padding: 0 20px;
   border-bottom:1px solid var(--border);
   background-color: var(--primary);
-  padding-bottom: 5px;
 }
 
 .user-info{
@@ -246,7 +244,7 @@
 
 .chat-body{
   width: 100%;
-  height: calc(100% - 140px);
+  height: calc(100% - 130px);
   overflow-y: scroll;
   background:linear-gradient(0deg, rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.658)), url('./assets/images/chat-bg.svg');
   background-size:200px;
@@ -305,7 +303,6 @@
   align-items: center;
   padding: 0 20px;
   background-color: var(--primary);
-  padding-bottom: 5px;
   width: calc(100% - 40px);
   position:absolute;
   bottom: 0;
@@ -357,4 +354,32 @@
   border-radius: 10px;
   background-color: rgba(5, 5, 5, 0.836);
   
+}
+
+
+
+
+
+
+
+
+
+.signin-btn{
+  background-color: red;
+  color: #fff;
+  padding:5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+
+}
+
+.preloader{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+.preloader i{
+  color: #ecfd00;
 }

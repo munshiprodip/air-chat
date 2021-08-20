@@ -7,9 +7,9 @@ const SideTopNav = () => {
         <img src="./images/user1.png" alt="user" />
       </div>
       <div className="search">
-        <div class="input-group">
-          <i class="fa fa-search icon"></i>
-          <input class="input-field" type="text" placeholder="search" />
+        <div className="input-group">
+          <i className="fa fa-search icon"></i>
+          <input className="input-field" type="text" placeholder="search" />
         </div>
       </div>
     </div>
