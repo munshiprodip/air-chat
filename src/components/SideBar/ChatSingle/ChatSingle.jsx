@@ -1,14 +1,16 @@
 import React from "react";
 import Avater from "../../Avater/Avater";
 
-const ChatSingle = () => {
+const ChatSingle = ({ user }) => {
   return (
     <div className="chat-single">
-      <Avater></Avater>
+      <Avater img={user.photoUrl} />
       <div className="chat-info">
         <h3>
-          Prodip M{" "}
-          <span style={{ float: "right", fontSize: "10px" }}>12:22 pm</span>{" "}
+          {user.name}
+          <span style={{ float: "right", fontSize: "10px" }}>
+            12:22 pm
+          </span>{" "}
         </h3>
         <p>I'm working on this project</p>
       </div>

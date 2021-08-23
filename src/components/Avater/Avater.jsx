@@ -1,9 +1,9 @@
 import React from "react";
 
-const Avater = () => {
+const Avater = ({ img }) => {
   return (
     <div className="avatar online">
-      <img src="./images/user1.png" alt="user" />
+      <img src={`${process.env.REACT_APP_API_URL}/avaters/${img}`} alt="user" />
     </div>
   );
 };

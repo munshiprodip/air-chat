@@ -1,3 +1,4 @@
+import axios from "axios";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
@@ -11,6 +12,7 @@ import {
   setLoggedOut,
 } from "../redux/actions/authAction";
 import { firebaseConfig } from "./firebaseConfig";
+axios.defaults.withCredentials = true;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -47,7 +49,7 @@ export const signOut = () => {
     .then(() => console.log("Log out"));
 };
 
-export const CheckLogin = ({ children }) => {
+export const CheckLoginFirebase = ({ children }) => {
   const pageLoading = useSelector((state) => state.auth.pageLoading);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -60,7 +62,7 @@ export const CheckLogin = ({ children }) => {
       }
       dispatch(setLoading(false));
     });
-  }, []);
+  }, [dispatch]);
 
   return pageLoading ? <Preloader /> : children;
 };

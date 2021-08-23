@@ -5,7 +5,7 @@ const Preloader = () => {
     <div className="preloader">
       <p>
         <span>
-          <i class="far fa-comment-alt"></i>{" "}
+          <i className="far fa-comment-alt"></i>{" "}
         </span>{" "}
         Loading ...
       </p>

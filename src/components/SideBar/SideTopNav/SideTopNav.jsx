@@ -8,7 +8,10 @@ const SideTopNav = () => {
   return (
     <div className="sidebar-nav">
       <div className="avatar online" onClick={() => dispatch(showProfile())}>
-        <img src={authUser.photoUrl} alt="user" />
+        <img
+          src={`${process.env.REACT_APP_API_URL}/avaters/${authUser.photoUrl}`}
+          alt="user"
+        />
       </div>
       <div className="search">
         <div className="input-group">
