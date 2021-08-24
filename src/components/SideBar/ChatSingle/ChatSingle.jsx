@@ -4,7 +4,7 @@ import Avater from "../../Avater/Avater";
 const ChatSingle = ({ user }) => {
   return (
     <div className="chat-single">
-      <Avater img={user.photoUrl} />
+      <Avater user={user} />
       <div className="chat-info">
         <h3>
           {user.name}

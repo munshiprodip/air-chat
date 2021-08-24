@@ -1,9 +1,9 @@
 import React from "react";
 
-const Avater = ({ img }) => {
+const Avater = ({ user }) => {
   return (
-    <div className="avatar online">
-      <img src={`${process.env.REACT_APP_API_URL}/avaters/${img}`} alt="user" />
+    <div className= {`${user.isOnline? "online": ""} avatar`}>
+      <img src={`${process.env.REACT_APP_API_URL}/avaters/${user.photoUrl}`} alt="user" />
     </div>
   );
 };

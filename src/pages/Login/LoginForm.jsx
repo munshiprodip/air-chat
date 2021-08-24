@@ -31,6 +31,7 @@ const LoginForm = () => {
       dispatch(setLoggedIn(user));
     } catch (error) {
       const { errors } = error.response.data;
+      console.log(errors)
       setFormError(decoratErr(errors));
     }
   };
@@ -63,6 +64,7 @@ const LoginForm = () => {
             />
           </div>
           <small className="input-error">{formError?.password}</small>
+          <small className="input-error">{formError?.common}</small>
 
           <div className="d-flex mt-20">
             <input className="button-secondary" type="reset" value="Cancel" />
