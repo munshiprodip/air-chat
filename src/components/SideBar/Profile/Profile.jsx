@@ -14,6 +14,7 @@ const Profile = () => {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <div className="sidebar">
       <div className="close-button">

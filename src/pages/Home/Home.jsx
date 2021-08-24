@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       {showProfile ? <Profile /> : <SideBar />}
-      <ChatContent></ChatContent>
+      <ChatContent />
     </>
   );
 };

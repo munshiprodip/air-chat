@@ -1,25 +1,36 @@
 const initialState = {
-    activeConversation: {},
-    receiver: {},
-    messages: [],
-  };
-  
-  const chatReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case "SET_ACTIVE_CONVERSATION": {
-        const newState = {
-          activeConversation: action.payload.conversation,
-          receiver: action.payload.receiver,
-          messages:  action.payload.messages,
-        };
-        return newState;
-      }
-        
-      default: {
-        return state;
-      }
+  chatOpen: false,
+  activeConversation: {},
+  receiver: {},
+  messages: [],
+};
+
+const chatReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_ACTIVE_CONVERSATION": {
+      const newState = {
+        activeConversation: action.payload.conversation,
+        receiver: action.payload.receiver,
+        messages: action.payload.messages,
+        chatOpen: true,
+      };
+      return newState;
     }
-  };
-  
-  export default chatReducer;
-  
+
+    case "RESET_CONVERSATION": {
+      const newState = {
+        activeConversation: {},
+        receiver: {},
+        messages: {},
+        chatOpen: false,
+      };
+      return newState;
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
+export default chatReducer;

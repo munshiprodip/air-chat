@@ -1,13 +1,16 @@
 import React from "react";
 
-const ChatNav = () => {
+const ChatNav = ({ receiver, typing }) => {
   return (
     <div className="chat-nav">
       <div className="avatar">
-        <img src="./images/user1.png" alt="user" />
+        <img
+          src={`${process.env.REACT_APP_API_URL}/avaters/${receiver.photoUrl}`}
+          alt="user"
+        />
       </div>
       <div className="user-info">
-        <p>Md. Najmul Alom</p>
+        <p>{receiver.name}</p>
         <small>online</small>
       </div>
     </div>

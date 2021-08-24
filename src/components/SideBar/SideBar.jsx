@@ -7,7 +7,7 @@ import ChatHistory from "./ChatHistory/ChatHistory";
 import SideTopNav from "./SideTopNav/SideTopNav";
 
 const SideBar = () => {
-  const loggedInUser = useSelector(state=>state.auth.loggedInUser);
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const dispatch = useDispatch();
   const [allUser, setAllUser] = useState([]);
   useEffect(() => {
@@ -20,14 +20,17 @@ const SideBar = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const startChat = (participant_id) =>{
-    axios.post(`${process.env.REACT_APP_API_URL}/message/new-conversation`, {participant_id : participant_id})
-    .then(({data})=>{
-      const {receiver, messages, conversation} = data.data
-      dispatch(()=>setActiveConversation({receiver, messages, conversation}))
-    })
-    .catch(error=>console.log(error))
-  }
+  const startChat = (participant_id) => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/message/new-conversation`, {
+        participant_id: participant_id,
+      })
+      .then(({ data }) => {
+        const { receiver, messages, conversation } = data.data;
+        dispatch(setActiveConversation({ receiver, messages, conversation }));
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="sidebar">
@@ -38,7 +41,11 @@ const SideBar = () => {
         <div className="chat-history">
           <h3 className="sidebar-title">Users</h3>
           {allUser.map((user) => (
-            <div key={user._id} className="chat-single" onClick={()=>startChat(user._id)}>
+            <div
+              key={user._id}
+              className="chat-single"
+              onClick={() => startChat(user._id)}
+            >
               <Avater user={user} />
               <div className="chat-info">
                 <h3>
