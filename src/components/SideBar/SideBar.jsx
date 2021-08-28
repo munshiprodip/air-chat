@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveConversation } from "../../redux/actions/chatAction";
+import {
+  resetNewMessage,
+  setActiveConversation,
+} from "../../redux/actions/chatAction";
 import Avater from "../Avater/Avater";
 import ChatHistory from "./ChatHistory/ChatHistory";
 import SideTopNav from "./SideTopNav/SideTopNav";
@@ -10,6 +13,7 @@ const SideBar = () => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const dispatch = useDispatch();
   const [allUser, setAllUser] = useState([]);
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/user/get-all-users`)
@@ -18,7 +22,7 @@ const SideBar = () => {
         setAllUser(user);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [dispatch]);
 
   const startChat = (participant_id) => {
     axios
@@ -27,6 +31,7 @@ const SideBar = () => {
       })
       .then(({ data }) => {
         const { receiver, messages, conversation } = data.data;
+        dispatch(resetNewMessage([]));
         dispatch(setActiveConversation({ receiver, messages, conversation }));
       })
       .catch((error) => console.log(error));

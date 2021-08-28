@@ -1,33 +1,55 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import io from "socket.io-client";
+import { useDispatch, useSelector } from "react-redux";
+import { socketIo } from "../../../App";
+import { setNewMessages } from "../../../redux/actions/chatAction";
 import ChatNav from "../ChatNav/ChatNav";
 
 const ChatBody = () => {
-  const [newMessage, setNewMessage] = useState([]);
+  const dispatch = useDispatch();
+  const timerRef = useRef(null);
+  const [typing, setTyping] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
-  const { activeConversation, receiver, messages, chatOpen } = useSelector(
-    (state) => state.chat
-  );
+  const { activeConversation, receiver, messages, chatOpen, newMessages } =
+    useSelector((state) => state.chat);
+
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  const socket = io("/");
+
   useEffect(() => {
     scrollToBottom();
-
-    socket.on("message-sent", function (message) {
+    socketIo.on("message-sent", function (message) {
       if (message.conversation === activeConversation._id) {
-        setNewMessage([...newMessage, message]);
+        dispatch(setNewMessages(message));
       }
     });
-    return () => {
-      socket.disconnect();
-    };
-  });
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [newMessages]);
+
+  //on change, start the countdown
+  const startTyping = () => {
+    if (!typing) {
+      socketIo.emit("typing", { userId: loggedInUser.id, status: true });
+      setTyping(true);
+      console.log("start typing...");
+    }
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(() => {
+      socketIo.emit("typing", { userId: loggedInUser.id, status: false });
+      setTyping(false);
+      console.log("stop typing");
+    }, 2000);
+  };
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -40,16 +62,20 @@ const ChatBody = () => {
       axios
         .post(`/message/new-message`, data)
         .then((res) => {
-          console.log(res);
           setInputMessage("");
         })
         .catch((error) => console.log(error));
     }
   };
 
+  const handleInputChange = (e) => {
+    setInputMessage(e.target.value);
+    startTyping();
+  };
+
   return (
     <>
-      <ChatNav receiver={receiver} />
+      <ChatNav receiver={receiver} typing={typing} />
 
       <div className="chat-body">
         <div className="message-container">
@@ -66,7 +92,7 @@ const ChatBody = () => {
             </div>
           ))}
 
-          {newMessage.map((message) => (
+          {newMessages.map((message) => (
             <div
               key={message._id}
               className={`${
@@ -86,7 +112,7 @@ const ChatBody = () => {
         <form style={{ width: "100%" }} onSubmit={sendMessage}>
           <div className="chat-form">
             <input
-              onChange={(e) => setInputMessage(e.target.value)}
+              onChange={handleInputChange}
               type="text"
               name=""
               id=""

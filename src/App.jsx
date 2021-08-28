@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import io from "socket.io-client";
 import "./App.css";
 import AppWrapper from "./components/AppWrapper/AppWrapper";
 import CheckLogin from "./components/CheckLogin/CheckLogin";
@@ -8,6 +9,7 @@ import Home from "./pages/Home/Home";
 import LoginForm from "./pages/Login/LoginForm";
 import Register from "./pages/Register/Register";
 
+export const socketIo = io("/");
 function App() {
   return (
     <Router>

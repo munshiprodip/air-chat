@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { socketIo } from "../../../App";
 
-const ChatNav = ({ receiver, typing }) => {
+const ChatNav = ({ receiver }) => {
+  const [typing, setTyping] = useState(false);
+  useEffect(() => {
+    socketIo.on("receiver-typing", function (data) {
+      if (receiver._id === data.userId) {
+        setTyping(data.status);
+      }
+    });
+  }, []);
   return (
     <div className="chat-nav">
       <div className="avatar">
@@ -11,7 +20,7 @@ const ChatNav = ({ receiver, typing }) => {
       </div>
       <div className="user-info">
         <p>{receiver.name}</p>
-        <small>online</small>
+        {typing ? <small>typing...</small> : <small>online</small>}
       </div>
     </div>
   );
